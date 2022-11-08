@@ -1,5 +1,6 @@
 import { numberRepository } from '../repositories/numberRepository';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { badRequestError } from '../services/errorCreatorService';
 
 export const numberController = {
   async getNumber(_req: Request, res: Response) {
@@ -11,11 +12,11 @@ export const numberController = {
     }
   },
 
-  async saveNumber(req: Request, res: Response) {
+  async saveNumber(req: Request, res: Response, next: NextFunction) {
     const { number } = req.body;
 
-    if (!number || isNaN(number)) {
-      return res.status(400).send('error');
+    if (!number || isNaN(Number(number))) {
+      return next(badRequestError('Please enter the number you want to save'));
     }
 
     try {
