@@ -1,1 +1,50 @@
+$color-primary: #395366;
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.calculator-grid {
+  display: grid;
+  margin-top: 2rem;
+  background-color: $color-primary;
+  grid-template-columns: repeat(4, 5rem);
+  grid-template-rows: minmax(6rem, auto) repeat(5, 5rem);
+  justify-content: center;
+}
+
+.output {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.calculator-grid > button {
+  cursor: pointer;
+  background-color: $color-primary;
+  border: none;
+  font-size: 2rem;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: #4a677b;
+  }
+}
+
+.span-two {
+  grid-column: span 2;
+}
